@@ -64,11 +64,14 @@ const MainComp = ({ textures }) => {
       {_.map(springs, (value: any, key: number) => {
         return <Card key={`item${key}`} card_props={value} />;
       })}
-      <Container x={100} y={50}>
+      <Container
+        x={100}
+        y={50}
+        cursor={"pointer"}
+        eventMode={"static"}
+        pointertap={start_animation}
+      >
         <Graphics
-          cursor={"pointer"}
-          eventMode={"static"}
-          onclick={start_animation}
           draw={(g) => {
             g.clear();
             g.beginFill("#EFB79F");
