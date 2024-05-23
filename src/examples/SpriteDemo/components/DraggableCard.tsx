@@ -36,9 +36,7 @@ const DraggableCard = () => {
         eventMode={"static"}
         onpointerdown={onDragStart}
         pointerup={onDragEnd}
-        pointerupoutside={() => {
-          console.log("asda");
-        }}
+        pointerupoutside={onDragEnd}
         hitArea={new PIXI.Circle(0, 0, 1250)}
         pointermove={onDragMove}
       />
