@@ -1,5 +1,6 @@
 import { Sprite } from "@pixi/react-animated";
 import * as PIXI from "pixi.js";
+import constants from "../constants";
 
 interface Props {
   card_props: any;
@@ -15,7 +16,7 @@ const Card = ({ card_props, dragging = true }: Props) => {
     const sprite = event.currentTarget;
     sprite.alpha = 0.5;
     sprite.dragging = true;
-    sprite.hitArea = new PIXI.Circle(0, 0, 3250);
+    sprite.hitArea = new PIXI.Circle(0, 0, 13250);
     sprite.anchor = { x: 0.5, y: 0.5 };
   };
 
@@ -36,7 +37,7 @@ const Card = ({ card_props, dragging = true }: Props) => {
     }
     const sprite = event.currentTarget;
     if (sprite.dragging) {
-      sprite.zIndex = 100;
+      sprite.zIndex = constants.VERY_BIG_ZINDEX;
       sprite.parent.toLocal(event.global, null, sprite.position);
     }
   };

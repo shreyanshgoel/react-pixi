@@ -68,6 +68,7 @@ const constants = {
   TOP_DECK_Y: 80,
   DIFF_BW_CARDS: 0.2,
   SCALE: 0.3,
+  VERY_BIG_ZINDEX: 100000,
 };
 
 export default constants;

@@ -8,7 +8,7 @@ import { useSpring } from "react-spring";
 import constants from "../constants";
 
 const TopDeckComp = () => {
-  const { on_play, bottom_deck, textures } = useContext(GameContext);
+  const { on_play, top_deck, textures } = useContext(GameContext);
 
   const get_card_position = (i: number) => {
     return {
@@ -29,7 +29,7 @@ const TopDeckComp = () => {
 
   return (
     <>
-      {_.map(bottom_deck, (value: any, key: number) => {
+      {_.map(top_deck, (value: any, key: number) => {
         return (
           <Card
             key={`item${key}`}

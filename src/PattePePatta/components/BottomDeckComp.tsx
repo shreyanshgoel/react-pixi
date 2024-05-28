@@ -34,7 +34,7 @@ const BottomDeckComp = () => {
           <Card
             key={`item${key}`}
             card_props={key === 0 ? props : get_card_position(key)}
-            dragging={false}
+            dragging={key === 0}
           />
         );
       })}
