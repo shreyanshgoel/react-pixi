@@ -6,6 +6,7 @@ import SpriteDemo from "./examples/SpriteDemo/SpriteDemo";
 import ErrorBoundary from "./ErrorBoundary";
 import Game from "./Game/Game";
 import "./App.css";
+import PattePePatta from "./PattePePatta/PattePePatta";
 
 const config = {
   size: { width: window.innerWidth, height: window.innerHeight },
@@ -27,7 +28,8 @@ const App = () => {
 
   return (
     <ErrorBoundary>
-      <Game />
+      {/* <Game /> */}
+      <PattePePatta />
     </ErrorBoundary>
   );
 };
