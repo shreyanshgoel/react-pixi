@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import constants from "./constants";
 
-
 const useGame = ({ textures }) => {
   const [turn, set_turn] = useState<string | null>(null);
   const [main_deck, set_main_deck] = useState(
@@ -31,7 +30,7 @@ const useGame = ({ textures }) => {
   };
 
   const on_game_started = () => {
-	const temp_bottom_deck: string[] = [];
+    const temp_bottom_deck: string[] = [];
     const temp_top_deck: string[] = [];
 
     _.map(main_deck, (card, key) => {
@@ -44,10 +43,10 @@ const useGame = ({ textures }) => {
 
     set_bottom_deck(_.reverse(temp_bottom_deck));
     set_top_deck(_.reverse(temp_top_deck));
-	set_turn(constants.BOTTOM_PLAYER);
-  }
+    set_turn(constants.BOTTOM_PLAYER);
+  };
 
-  const handle_play = () => {
+  const on_play = () => {
     set_turn(
       turn === constants.BOTTOM_PLAYER
         ? constants.TOP_PLAYER
@@ -60,7 +59,10 @@ const useGame = ({ textures }) => {
     on_game_started,
     turn,
     handle_shuffle_my_cards,
-    handle_play,
+    on_play,
+    textures,
+    bottom_deck,
+    top_deck,
   };
 };
 

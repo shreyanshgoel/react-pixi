@@ -1,25 +1,25 @@
 import { useSprings } from "react-spring";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Container } from "@pixi/react-animated";
 import _ from "lodash";
 
 import constants from "../constants";
 import Card from "./Card";
 import Button from "./Button";
+import GameContext from "../context";
 
-const StartingDeck = ({
-  textures,
-  on_game_started,
-  handle_shuffle_main_deck,
-}) => {
+const StartingDeck = () => {
   const [show_start_button, set_show_start_button] = useState(true);
+
+  const { textures, on_game_started, handle_shuffle_main_deck } =
+    useContext(GameContext);
 
   const [springs, api] = useSprings(constants.NUMBER_OF_CARDS, (i) => ({
     texture: textures[constants.CARDS.base],
-    x: constants.WIDTH / 2 - i * 0.2,
-    scale: [0.3, 0.3],
+    x: constants.WIDTH / 2 - i * constants.DIFF_BW_CARDS,
+    scale: [constants.SCALE, constants.SCALE],
     y: constants.HEIGHT / 2,
-    zIndex: constants.NUMBER_OF_CARDS - i,
+    zIndex: 1000 - i,
     anchor: 0.5,
     angle: 0,
   }));
@@ -39,6 +39,8 @@ const StartingDeck = ({
             x: final_x,
             y: final_y,
             angle: 360,
+          },
+          {
             zIndex,
           },
         ],
@@ -52,7 +54,8 @@ const StartingDeck = ({
     api.start((i) => {
       return {
         ...get_final_config(
-          constants.WIDTH / 2 + i * 0.2,
+          constants.WIDTH / 2 -
+            Math.floor((52 - i) / 2) * constants.DIFF_BW_CARDS,
           i % 2 === 0 ? constants.BOTTOM_DECK_Y : constants.TOP_DECK_Y,
           i * 200,
           i

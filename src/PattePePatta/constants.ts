@@ -66,6 +66,8 @@ const constants = {
   TOP_PLAYER: "t",
   BOTTOM_DECK_Y: HEIGHT - 80,
   TOP_DECK_Y: 80,
+  DIFF_BW_CARDS: 0.2,
+  SCALE: 0.3,
 };
 
 export default constants;
