@@ -54,11 +54,18 @@ const CARDS = {
   base: "base",
 };
 
+const WIDTH = window.innerWidth;
+const HEIGHT = window.innerHeight;
+
 const constants = {
-  WIDTH: window.innerWidth,
-  HEIGHT: window.innerHeight,
+  WIDTH,
+  HEIGHT,
   NUMBER_OF_CARDS: 52,
   CARDS,
+  BOTTOM_PLAYER: "b",
+  TOP_PLAYER: "t",
+  BOTTOM_DECK_Y: HEIGHT - 80,
+  TOP_DECK_Y: 80,
 };
 
 export default constants;
