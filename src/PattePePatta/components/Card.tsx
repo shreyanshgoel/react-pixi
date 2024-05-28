@@ -3,21 +3,26 @@ import * as PIXI from "pixi.js";
 
 interface Props {
   card_props: any;
+
+  dragging?: boolean;
 }
 
-const Card = ({ card_props }: Props) => {
+const Card = ({ card_props, dragging = true }: Props) => {
   const on_drag_start = (event: any) => {
+    if (!dragging) {
+      return;
+    }
     const sprite = event.currentTarget;
     sprite.alpha = 0.5;
     sprite.dragging = true;
     sprite.hitArea = new PIXI.Circle(0, 0, 3250);
     sprite.anchor = { x: 0.5, y: 0.5 };
-    // const position = event.data.getLocalPosition(sprite);
-    // sprite.x = position.x;
-    // sprite.y = position.y;
   };
 
   const on_drag_end = (event: any) => {
+    if (!dragging) {
+      return;
+    }
     const sprite = event.currentTarget;
     sprite.alpha = 1;
     sprite.dragging = false;
@@ -26,6 +31,9 @@ const Card = ({ card_props }: Props) => {
   };
 
   const on_drag_move = (event: any) => {
+    if (!dragging) {
+      return;
+    }
     const sprite = event.currentTarget;
     if (sprite.dragging) {
       sprite.zIndex = 100;
