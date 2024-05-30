@@ -67,7 +67,7 @@ const constants = {
   BOTTOM_DECK_Y: HEIGHT - 80,
   TOP_DECK_Y: 80,
   DIFF_BW_CARDS: 0.2,
-  SCALE: 0.3,
+  SCALE: 0.2,
   VERY_BIG_ZINDEX: 100000,
 };
 

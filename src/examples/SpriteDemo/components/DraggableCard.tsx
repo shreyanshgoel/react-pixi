@@ -2,8 +2,6 @@ import _ from "lodash";
 import { Sprite } from "@pixi/react-animated";
 import * as PIXI from "pixi.js";
 
-import back from "../../../assets/back.png";
-
 const DraggableCard = () => {
   const onDragStart = (event: any) => {
     const sprite = event.currentTarget;

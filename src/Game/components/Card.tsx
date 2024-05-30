@@ -11,7 +11,6 @@ const Card = ({ card_props }: Props) => {
     sprite.alpha = 0.5;
     sprite.dragging = true;
     sprite.hitArea = new PIXI.Circle(0, 0, 3250);
-    sprite.anchor = { x: 0.5, y: 0.5 };
     // const position = event.data.getLocalPosition(sprite);
     // sprite.x = position.x;
     // sprite.y = position.y;
@@ -28,7 +27,7 @@ const Card = ({ card_props }: Props) => {
   const on_drag_move = (event: any) => {
     const sprite = event.currentTarget;
     if (sprite.dragging) {
-      sprite.zIndex = 100;
+      sprite.zIndex = 100000;
       sprite.parent.toLocal(event.global, null, sprite.position);
     }
   };
@@ -38,7 +37,7 @@ const Card = ({ card_props }: Props) => {
       x={0}
       y={0}
       scale={0.16}
-      anchor={{ x: 0, y: 0 }}
+      anchor={0.5}
       zIndex={0}
       cursor={"pointer"}
       eventMode={"static"}
