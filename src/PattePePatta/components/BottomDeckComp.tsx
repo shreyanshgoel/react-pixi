@@ -8,7 +8,7 @@ import { useSpring } from "react-spring";
 import constants from "../constants";
 
 const BottomDeckComp = () => {
-  const { on_play, bottom_deck, textures } = useContext(GameContext);
+  const { on_play, bottom_deck, textures, turn } = useContext(GameContext);
 
   const get_card_position = (i: number) => {
     return {
@@ -16,15 +16,17 @@ const BottomDeckComp = () => {
       x: constants.WIDTH / 2 - i * constants.DIFF_BW_CARDS,
       scale: [constants.SCALE, constants.SCALE],
       y: constants.BOTTOM_DECK_Y,
-      zIndex: 1000 - i,
+      zIndex: constants.VERY_BIG_ZINDEX - 10 - i,
       anchor: 0.5,
     };
   };
 
-  const [props, api] = useSpring(get_card_position(0), []);
+  const first_card_position = get_card_position(0);
+
+  const [props, api] = useSpring(first_card_position, []);
 
   const handle_play = () => {
-    on_play();
+    on_play(api, first_card_position);
   };
 
   return (
@@ -38,7 +40,9 @@ const BottomDeckComp = () => {
           />
         );
       })}
-      <PlayerButtons handle_play={handle_play} />
+      {turn === constants.BOTTOM_PLAYER && (
+        <PlayerButtons handle_play={handle_play} />
+      )}
     </>
   );
 };

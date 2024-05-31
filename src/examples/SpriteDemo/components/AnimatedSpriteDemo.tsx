@@ -90,7 +90,6 @@ const AnimatedSpriteDemo = () => {
         Assets.load(back),
         Assets.load(front),
       ]);
-      console.log(all_textures);
       setTextures(all_textures);
     })();
   }, []);

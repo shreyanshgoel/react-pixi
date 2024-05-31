@@ -6,14 +6,15 @@ import GameContext from "./context";
 import { useContext } from "react";
 import BottomDeckComp from "./components/BottomDeckComp";
 import TopDeckComp from "./components/TopDeckComp";
+import TableDeckComp from "./components/TableDeckComp";
 
 const GameComp = () => {
-  const { turn } = useContext(GameContext);
+  const { is_game_started } = useContext(GameContext);
 
   return (
     <Container sortableChildren={true}>
-      {!turn && <StartingDeck />}
-
+      {!is_game_started && <StartingDeck />}
+      <TableDeckComp />
       <BottomDeckComp />
       <TopDeckComp />
     </Container>

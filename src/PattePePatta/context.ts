@@ -9,6 +9,9 @@ interface Props {
   textures: any;
   bottom_deck: any;
   top_deck: any;
+  is_bottom_player_turn: any;
+  table_deck: any;
+  is_game_started: boolean;
 }
 
 const GameContext = React.createContext<Props>({} as Props);
