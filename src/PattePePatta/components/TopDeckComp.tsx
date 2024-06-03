@@ -28,6 +28,22 @@ const TopDeckComp = () => {
     on_play(api, first_card_position);
   };
 
+  const handle_come_back = () => {
+    api.start(() => {
+      return {
+        to: [
+          {
+            ...first_card_position,
+          },
+        ],
+        config: {
+          duration: 500,
+          easing: (t) => t,
+        },
+      };
+    });
+  };
+
   return (
     <>
       {_.map(top_deck, (value: any, key: number) => {
@@ -35,7 +51,10 @@ const TopDeckComp = () => {
           <Card
             key={`item${key}`}
             card_props={key === 0 ? props : get_card_position(key)}
-            dragging={false}
+            dragging={key === 0}
+            handle_play={handle_play}
+            api={api}
+            handle_come_back={handle_come_back}
           />
         );
       })}
