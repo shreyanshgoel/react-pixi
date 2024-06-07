@@ -10,7 +10,7 @@ const PlayerButtons = ({ handle_play }) => {
   return (
     <>
       <Button
-        on_click={handle_play}
+        on_click={() => handle_play()}
         x={80}
         y={is_bottom_player_turn ? constants.HEIGHT - 100 : 50}
         width={80}

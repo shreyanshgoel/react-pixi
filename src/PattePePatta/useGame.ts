@@ -56,7 +56,11 @@ const useGame = ({ textures }) => {
     set_is_game_started(true);
   };
 
-  const on_play = (api: SpringRef, first_card_pos) => {
+  const on_play = (
+    api: SpringRef,
+    first_card_pos,
+    drag_card_pos?: { x: number; y: number }
+  ) => {
     last_turn_ref.current = turn;
     set_turn(null);
     const final_x = constants.WIDTH / 2;
@@ -67,13 +71,18 @@ const useGame = ({ textures }) => {
 
     const _table_deck = _.cloneDeep(table_deck);
 
+    const initial_card_position_y = drag_card_pos?.y || first_card_pos.y;
+    const initial_card_position_x = drag_card_pos?.x || first_card_pos.x;
+
+    const halfway_y = (final_y - initial_card_position_y) / 2;
+    const halfway_x = (final_x - initial_card_position_x) / 2;
+
     api.start(() => {
       return {
         to: [
           {
-            y: is_bottom_player_turn
-              ? (constants.BOTTOM_DECK_Y + final_y) / 2
-              : final_y / 2,
+            x: initial_card_position_x + halfway_x,
+            y: initial_card_position_y + halfway_y,
             scale: [0.02, constants.SCALE],
             zIndex: constants.VERY_BIG_ZINDEX,
           },

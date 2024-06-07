@@ -7,7 +7,7 @@ interface Props {
   card_props: any;
 
   dragging?: boolean;
-  handle_play?: () => void;
+  handle_play?: (param: any) => void;
   api?: any;
   handle_come_back?: () => void;
 }
@@ -52,7 +52,10 @@ const Card = ({
     api.set({ x, y });
 
     if (Math.abs(sprite.position.y - drag_start_pos.current.y) > 100) {
-      handle_play?.();
+      handle_play?.({
+        x: x,
+        y: y,
+      });
     } else {
       handle_come_back?.();
     }

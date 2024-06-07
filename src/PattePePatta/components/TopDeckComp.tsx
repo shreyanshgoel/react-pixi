@@ -24,8 +24,8 @@ const TopDeckComp = () => {
 
   const [props, api] = useSpring(first_card_position, []);
 
-  const handle_play = () => {
-    on_play(api, first_card_position);
+  const handle_play = (drag_pos) => {
+    on_play(api, first_card_position, drag_pos);
   };
 
   const handle_come_back = () => {
@@ -44,6 +44,8 @@ const TopDeckComp = () => {
     });
   };
 
+  const is_my_turn = turn === constants.TOP_PLAYER;
+
   return (
     <>
       {_.map(top_deck, (value: any, key: number) => {
@@ -51,16 +53,14 @@ const TopDeckComp = () => {
           <Card
             key={`item${key}`}
             card_props={key === 0 ? props : get_card_position(key)}
-            dragging={key === 0}
+            dragging={key === 0 && is_my_turn}
             handle_play={handle_play}
             api={api}
             handle_come_back={handle_come_back}
           />
         );
       })}
-      {turn === constants.TOP_PLAYER && (
-        <PlayerButtons handle_play={handle_play} />
-      )}
+      {is_my_turn && <PlayerButtons handle_play={handle_play} />}
     </>
   );
 };
